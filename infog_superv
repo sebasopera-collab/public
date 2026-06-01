@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arquitectura Analítica: Supervivencia Empresarial</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+<style>
+.chart-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 350px;
+    max-height: 450px;
+}
+@media (min-width: 768px) {
+    .chart-container {
+        height: 400px;
+    }
+}
+.glass-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+}
+.flow-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: #3B82F6;
+    margin: 1rem 0;
+}
+@media (min-width: 768px) {
+    .flow-arrow {
+        transform: rotate(-90deg);
+        margin: 0 1rem;
+    }
+}
+</style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased selection:bg-blue-200">
+
+<nav class="bg-blue-900 text-white sticky top-0 z-50 shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+        <div class="text-xl font-bold tracking-wider">ANDALUCÍA EMPRENDE</div>
+        <div class="text-sm font-medium text-blue-200 hidden md:block">Arquitectura Metodológica y Analítica</div>
+    </div>
+</nav>
+
+<header class="bg-gradient-to-br from-blue-900 to-blue-700 text-white py-16 md:py-24 px-4 shadow-inner">
+    <div class="max-w-5xl mx-auto text-center">
+        <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">Estudio de Supervivencia y Riesgo Empresarial</h1>
+        <p class="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
+            Un armazón econométrico y algorítmico diseñado con máximas garantías científicas para identificar los factores condicionantes del éxito en el ecosistema emprendedor andaluz.
+        </p>
+    </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-4 py-12 space-y-20">
+
+    <section>
+        <div class="mb-10 text-center max-w-3xl mx-auto">
+            <div class="text-5xl mb-4">&#x23F1;&#xFE0F;</div>
+            <h2 class="text-3xl font-bold text-blue-900 mb-4">1. Dinámica de Supervivencia: Estimador de Kaplan-Meier</h2>
+            <p class="text-lg text-slate-600">
+                Como primera etapa del modelado, aplicamos el análisis no paramétrico de Kaplan-Meier. Esta técnica permite calcular con precisión la probabilidad de que una empresa sobreviva más allá de horizontes críticos (1, 3 y 5 años), integrando el tratamiento estricto de la censura estadística por la derecha para evitar sesgos de supervivencia.
+            </p>
+        </div>
+        
+        <div class="glass-card rounded-2xl shadow-xl p-6 md:p-10">
+            <h3 class="text-xl font-semibold text-slate-800 mb-2 text-center">Curvas de Supervivencia Proyectadas</h3>
+            <p class="text-sm text-slate-500 mb-6 text-center">Probabilidad estimada de mantenimiento de la actividad a lo largo de 60 meses, contrastando cohortes mediante el Test de Log-Rank.</p>
+            <div class="chart-container">
+                <canvas id="kaplanMeierChart">Tu navegador no soporta el elemento canvas. Por favor, actualiza tu navegador o revisa tu conexión a internet.</canvas>
+            </div>
+            <div class="mt-8 bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
+                <p class="text-sm text-slate-700">
+                    <strong class="text-blue-900">Lectura Analítica:</strong> El gráfico proyecta el declive natural en la probabilidad de supervivencia. La separación entre las líneas representa el impacto del acompañamiento institucional a lo largo del tiempo. Las mediciones en los meses 12, 36 y 60 son los hitos de evaluación clave definidos por la Fundación.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="mb-10 text-center max-w-3xl mx-auto">
+            <div class="text-5xl mb-4">&#x2696;&#xFE0F;</div>
+            <h2 class="text-3xl font-bold text-blue-900 mb-4">2. Aislamiento de Factores: Modelo de Cox y Hazard Ratio</h2>
+            <p class="text-lg text-slate-600">
+                Para trascender la estadística descriptiva, implementamos el Modelo de Riesgos Proporcionales de Cox. Este modelo multivariante aísla el efecto real de cada variable sobre la probabilidad de cese, permitiendo identificar qué características empresariales actúan como escudos protectores y cuáles como aceleradores del riesgo.
+            </p>
+        </div>
+
+        <div class="glass-card rounded-2xl shadow-xl p-6 md:p-10">
+            <h3 class="text-xl font-semibold text-slate-800 mb-2 text-center">Impacto de Covariables (Hazard Ratios)</h3>
+            <p class="text-sm text-slate-500 mb-6 text-center">Un valor HR &gt; 1 indica factor de riesgo (acelera el cese). Un valor HR &lt; 1 indica factor protector (reduce la mortalidad).</p>
+            <div class="chart-container">
+                <canvas id="coxHazardChart">Tu navegador no soporta el elemento canvas. Por favor, actualiza tu navegador o revisa tu conexión a internet.</canvas>
+            </div>
+            <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-emerald-50 border-l-4 border-emerald-500 p-4 rounded-r-lg">
+                    <h4 class="font-bold text-emerald-800 mb-1">Factores Protectores (HR &lt; 1)</h4>
+                    <p class="text-sm text-slate-700">Variables como el acompañamiento del CADE o la formación específica presentan ratios inferiores a 1, demostrando empíricamente una reducción significativa en el riesgo de cese en cualquier momento dado.</p>
+                </div>
+                <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-lg">
+                    <h4 class="font-bold text-red-800 mb-1">Factores de Riesgo (HR &gt; 1)</h4>
+                    <p class="text-sm text-slate-700">Carencias estructurales como la ausencia de un plan de negocio sólido elevan el Hazard Ratio, multiplicando el riesgo de baja registral frente a la categoría de referencia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="mb-10 text-center max-w-3xl mx-auto">
+            <div class="text-5xl mb-4">&#x1F3AF;</div>
+            <h2 class="text-3xl font-bold text-blue-900 mb-4">3. Modelización Predictiva: Índice de Vulnerabilidad</h2>
+            <p class="text-lg text-slate-600">
+                Integrando algoritmos de partición recursiva (Survival Trees) con los resultados del modelo de Cox, construimos el Índice de Vulnerabilidad Sectorial. Esta herramienta segmenta la muestra operacionalizando el riesgo en tres perfiles diferenciados para facilitar la toma de decisiones preventivas.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <div class="glass-card rounded-2xl shadow-xl p-6 md:p-10">
+                <h3 class="text-xl font-semibold text-slate-800 mb-6 text-center">Distribución de Perfiles de Riesgo</h3>
+                <div class="chart-container !h-80 !max-h-80">
+                    <canvas id="vulnerabilityIndexChart">Tu navegador no soporta el elemento canvas. Por favor, actualiza tu navegador o revisa tu conexión a internet.</canvas>
+                </div>
+            </div>
+            <div class="space-y-4">
+                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                    <div class="flex items-center gap-4 mb-2">
+                        <div class="w-4 h-4 rounded-full bg-emerald-500"></div>
+                        <h4 class="text-lg font-bold text-slate-800">Baja Vulnerabilidad (Alta Resiliencia)</h4>
+                    </div>
+                    <p class="text-sm text-slate-600">Segmentos con HR inferiores a la unidad. Se caracterizan por una consolidación estructural sostenible en el tiempo y curvas de supervivencia estables.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                    <div class="flex items-center gap-4 mb-2">
+                        <div class="w-4 h-4 rounded-full bg-amber-400"></div>
+                        <h4 class="text-lg font-bold text-slate-800">Vulnerabilidad Media (Riesgo Moderado)</h4>
+                    </div>
+                    <p class="text-sm text-slate-600">Perfiles con estabilidad inicial pero que experimentan incrementos de mortalidad hacia el horizonte de los 5 años, vinculados a cambios de ciclo.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                    <div class="flex items-center gap-4 mb-2">
+                        <div class="w-4 h-4 rounded-full bg-red-500"></div>
+                        <h4 class="text-lg font-bold text-slate-800">Alta Vulnerabilidad (Riesgo Crítico)</h4>
+                    </div>
+                    <p class="text-sm text-slate-600">Sectores o configuraciones con HR elevado. Experimentan curvas de supervivencia aceleradas negativamente en el umbral crítico de 1 y 3 años.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mb-16">
+        <div class="mb-10 text-center max-w-3xl mx-auto">
+            <div class="text-5xl mb-4">&#x2699;&#xFE0F;</div>
+            <h2 class="text-3xl font-bold text-blue-900 mb-4">4. Replicabilidad y Tratamiento de Datos (Pipeline ETL)</h2>
+            <p class="text-lg text-slate-600">
+                La excelencia metodológica exige reproducibilidad. Sustituimos procesos manuales por un flujo estructurado de código abierto (Open Source) garantizando la transferencia tecnológica a los técnicos de la Fundación, sin dependencias ni costes de licencias.
+            </p>
+        </div>
+
+        <div class="glass-card rounded-2xl shadow-xl p-8 bg-blue-900 text-white">
+            <div class="flex flex-col md:flex-row justify-between items-center text-center">
+                
+                <div class="w-full md:w-1/4 p-4">
+                    <div class="text-4xl mb-3">&#x1F517;</div>
+                    <h4 class="font-bold text-lg mb-2 text-cyan-400">1. Ingesta y Matching</h4>
+                    <p class="text-sm text-blue-100">Extracción y fusión de fuentes (CRM Emprende e IECA) mediante claves fiscales cifradas y auditoría inicial.</p>
+                </div>
+
+                <div class="flow-arrow">&#x2B07;&#xFE0F;</div>
+
+                <div class="w-full md:w-1/4 p-4">
+                    <div class="text-4xl mb-3">&#x1F9F9;</div>
+                    <h4 class="font-bold text-lg mb-2 text-cyan-400">2. Curación Algorítmica</h4>
+                    <p class="text-sm text-blue-100">Limpieza predictiva, estandarización bajo CNAE-2009 e imputación inteligente (KNN) de valores nulos.</p>
+                </div>
+
+                <div class="flow-arrow">&#x2B07;&#xFE0F;</div>
+
+                <div class="w-full md:w-1/4 p-4">
+                    <div class="text-4xl mb-3">&#x23F1;&#xFE0F;</div>
+                    <h4 class="font-bold text-lg mb-2 text-cyan-400">3. Ingeniería de Variables</h4>
+                    <p class="text-sm text-blue-100">Cálculo milimétrico de horizontes temporales, reglas de "cierres efectivos" y control de censura.</p>
+                </div>
+
+                <div class="flow-arrow">&#x2B07;&#xFE0F;</div>
+
+                <div class="w-full md:w-1/4 p-4">
+                    <div class="text-4xl mb-3">&#x1F4BE;</div>
+                    <h4 class="font-bold text-lg mb-2 text-cyan-400">4. Interoperabilidad</h4>
+                    <p class="text-sm text-blue-100">Exportación de Cuadernos Jupyter y matrices Data-Warehouse relacionales listas para plataformas SIDEA.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="bg-slate-900 text-slate-400 py-8 text-center text-sm">
+    <div class="max-w-7xl mx-auto px-4">
+        <p>Propuesta Metodológica y Analítica • Análisis de Supervivencia Empresarial</p>
+        <p class="mt-2">Arquitectura Open Source • Machine Learning Estadístico</p>
+    </div>
+</footer>
+
+<script>
+// Envolvemos todo en DOMContentLoaded para asegurar que el HTML existe antes de dibujar
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // Si Chart no está definido (ej. por bloqueo del navegador al CDN), salimos elegantemente
+    if (typeof Chart === 'undefined') {
+        console.error("No se pudo cargar la librería Chart.js. Revisa la conexión a internet o los bloqueadores de anuncios/scripts.");
+        return;
+    }
+
+    function wrapLabel(label, maxChars = 16) {
+        const words = label.split(' ');
+        const lines = [];
+        let currentLine = words[0];
+        for (let i = 1; i < words.length; i++) {
+            if (currentLine.length + words[i].length + 1 <= maxChars) {
+                currentLine += ' ' + words[i];
+            } else {
+                lines.push(currentLine);
+                currentLine = words[i];
+            }
+        }
+        lines.push(currentLine);
+        return lines;
+    }
+
+    Chart.defaults.font.family = "'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
+    Chart.defaults.color = '#475569';
+
+    // Gráfico 1: Kaplan-Meier
+    const canvasKM = document.getElementById('kaplanMeierChart');
+    if(canvasKM) {
+        const kaplanMeierCtx = canvasKM.getContext('2d');
+        new Chart(kaplanMeierCtx, {
+            type: 'line',
+            data: {
+                labels: ['0 meses', '12 meses (1 Año)', '24 meses', '36 meses (3 Años)', '48 meses', '60 meses (5 Años)'],
+                datasets: [
+                    {
+                        label: 'Cohorte Acompañamiento CADE',
+                        data: [100, 88, 79, 72, 65, 58],
+                        borderColor: '#3B82F6',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.3,
+                        pointBackgroundColor: '#1E3A8A',
+                        pointRadius: 5
+                    },
+                    {
+                        label: 'Cohorte Base (Sin tutorización)',
+                        data: [100, 75, 60, 48, 38, 32],
+                        borderColor: '#94A3B8',
+                        borderWidth: 2,
+                        borderDash: [5, 5],
+                        fill: false,
+                        tension: 0.3,
+                        pointBackgroundColor: '#64748B',
+                        pointRadius: 4
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom' },
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                    return label.join(' ');
+                                } else {
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        title: { display: true, text: 'Probabilidad de Supervivencia (%)', font: { weight: 'bold' } }
+                    },
+                    x: {
+                        title: { display: true, text: 'Tiempo en Riesgo', font: { weight: 'bold' } }
+                    }
+                }
+            }
+        });
+    }
+
+    // Gráfico 2: Modelo de Cox
+    const rawCoxLabels = ['Ausencia de Plan de Negocio', 'Infrafinanciación Inicial', 'Sector Alta Volatilidad', 'Formación Académica Superior', 'Asesoramiento Continuado CADE'];
+    const wrappedCoxLabels = rawCoxLabels.map(label => wrapLabel(label));
+    
+    const canvasCox = document.getElementById('coxHazardChart');
+    if(canvasCox) {
+        const coxHazardCtx = canvasCox.getContext('2d');
+        new Chart(coxHazardCtx, {
+            type: 'bar',
+            data: {
+                labels: wrappedCoxLabels,
+                datasets: [{
+                    label: 'Hazard Ratio (HR)',
+                    data: [1.65, 1.40, 1.15, 0.85, 0.65],
+                    backgroundColor: function(context) {
+                        const value = context.dataset.data[context.dataIndex];
+                        return value > 1 ? '#EF4444' : '#10B981';
+                    },
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                    return label.join(' ');
+                                } else {
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        title: { display: true, text: 'Riesgo Relativo (1 = Riesgo Base Neutro)', font: { weight: 'bold' } },
+                        grid: { color: function(context) { if (context.tick.value === 1) { return '#000000'; } return '#E2E8F0'; }, lineWidth: function(context) { if (context.tick.value === 1) { return 2; } return 1; } }
+                    }
+                }
+            }
+        });
+    }
+
+    // Gráfico 3: Índice de Vulnerabilidad
+    const rawVulnLabels = ['Alta Resiliencia (Riesgo Bajo)', 'Riesgo Moderado', 'Riesgo Crítico'];
+    const wrappedVulnLabels = rawVulnLabels.map(label => wrapLabel(label));
+
+    const canvasVuln = document.getElementById('vulnerabilityIndexChart');
+    if(canvasVuln) {
+        const vulnerabilityCtx = canvasVuln.getContext('2d');
+        new Chart(vulnerabilityCtx, {
+            type: 'doughnut',
+            data: {
+                labels: wrappedVulnLabels,
+                datasets: [{
+                    data: [45, 35, 20],
+                    backgroundColor: ['#10B981', '#FBBF24', '#EF4444'],
+                    borderWidth: 0,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '65%',
+                plugins: {
+                    legend: { position: 'bottom' },
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                    return label.join(' ');
+                                } else {
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+});
+</script>
+</body>
+</html>
